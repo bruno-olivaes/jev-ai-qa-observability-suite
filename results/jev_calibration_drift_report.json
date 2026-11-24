@@ -1,0 +1,120 @@
+{
+  "n_samples": 120,
+  "classification": {
+    "labels": [
+      "LOW_RISK_AUTO",
+      "POLICY_CHECK_NEEDED",
+      "HIGH_RISK_FRAUD",
+      "PROMPT_INJECTION"
+    ],
+    "confusion_matrix": [
+      [
+        30,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        30,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ]
+    ],
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_class": {
+      "LOW_RISK_AUTO": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+      },
+      "POLICY_CHECK_NEEDED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+      },
+      "HIGH_RISK_FRAUD": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+      },
+      "PROMPT_INJECTION": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+      }
+    }
+  },
+  "calibration": {
+    "brier_score": 0.019921,
+    "ece": 0.080059,
+    "accuracy": 1.0,
+    "mean_confidence": 0.919941,
+    "bins": [
+      {
+        "bin_range": [
+          0.75,
+          0.88
+        ],
+        "count": 50,
+        "avg_confidence": 0.8171,
+        "empirical_accuracy": 1.0
+      },
+      {
+        "bin_range": [
+          0.88,
+          1.0
+        ],
+        "count": 70,
+        "avg_confidence": 0.9934,
+        "empirical_accuracy": 1.0
+      }
+    ]
+  },
+  "latency_sla": {
+    "count": 120,
+    "p50_ms": 0.0264,
+    "p95_ms": 0.0432,
+    "p99_ms": 0.1175,
+    "max_ms": 0.4233,
+    "p95_limit_ms": 500.0,
+    "p99_limit_ms": 800.0,
+    "sla_passed": true
+  },
+  "drift_monitoring": {
+    "confidence_psi": {
+      "psi": 1.549113,
+      "severity": "CRITICAL_DRIFT"
+    },
+    "class_mix_js_divergence": 0.231679,
+    "baseline_class_mix": {
+      "LOW_RISK_AUTO": 0.25,
+      "POLICY_CHECK_NEEDED": 0.25,
+      "HIGH_RISK_FRAUD": 0.25,
+      "PROMPT_INJECTION": 0.25
+    },
+    "shifted_class_mix": {
+      "LOW_RISK_AUTO": 0.05,
+      "POLICY_CHECK_NEEDED": 0.4,
+      "HIGH_RISK_FRAUD": 0.55,
+      "PROMPT_INJECTION": 0.0
+    }
+  }
+}

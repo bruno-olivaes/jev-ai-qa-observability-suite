@@ -1,0 +1,37 @@
+{
+  "monitors": [
+    {
+      "name": "[JEV-S1] High P95 Inference Latency SLA Breach (>500ms)",
+      "type": "metric alert",
+      "query": "p95(last_5m):trace.jev_system1_classify.duration.by_service{service:jev-ai-qa-service,env:production} > 0.500",
+      "message": "System-1 classifier P95 latency exceeded 500ms SLA. Check batching or tokenizer contention. @oncall-qa",
+      "tags": ["service:jev-ai-qa-service", "team:ai-qa", "sla:system1"],
+      "thresholds": {
+        "critical": 0.5,
+        "warning": 0.35
+      }
+    },
+    {
+      "name": "[JEV-S1] Schema Validation / 4xx-5xx Error Rate Spike",
+      "type": "log alert",
+      "query": "logs(\"service:jev-ai-qa-service status:ERROR\").index(\"*\").rollup(\"count\").last(\"5m\") > 5",
+      "message": "Elevated error rate or Pydantic strict schema rejection detected in JEV pipeline.",
+      "tags": ["service:jev-ai-qa-service", "security:guardrail"],
+      "thresholds": {
+        "critical": 5,
+        "warning": 2
+      }
+    },
+    {
+      "name": "[Eval-Gate] Mean Confidence / Grounding Faithfulness Degradation",
+      "type": "metric alert",
+      "query": "avg(last_15m):avg:jev.eval.faithfulness{service:jev-ai-qa-service} < 0.70",
+      "message": "RAG/Agent Faithfulness dropped below 0.70 threshold; investigate retrieval drift or prompt regression.",
+      "tags": ["service:jev-ai-qa-service", "team:ai-qa", "gate:velith-deepeval"],
+      "thresholds": {
+        "critical": 0.7,
+        "warning": 0.8
+      }
+    }
+  ]
+}

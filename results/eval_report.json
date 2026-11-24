@@ -1,0 +1,83 @@
+{
+  "total_cases": 6,
+  "passed_cases": 3,
+  "mean_faithfulness": 0.5,
+  "mean_relevancy": 0.6975,
+  "mean_hallucination": 0.5,
+  "mean_contextual_precision": 1.0,
+  "mean_velith_score": 5.5926,
+  "case_details": [
+    {
+      "case_index": 0,
+      "input": "What is the refund deadline and maximum SLA hours for order cancellation?",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.6812,
+      "hallucination": 0.0,
+      "contextual_precision": 1.0,
+      "velith_score": 9.0436,
+      "passed": true,
+      "unsupported_claims": []
+    },
+    {
+      "case_index": 1,
+      "input": "What is the refund deadline and processing fee?",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.7875,
+      "hallucination": 1.0,
+      "contextual_precision": 1.0,
+      "velith_score": 2.3625,
+      "passed": false,
+      "unsupported_claims": [
+        "Refund requests have a 90 days window and charge a 25.5 percent processing fee (ungrounded numbers ['25.5', '90'])"
+      ]
+    },
+    {
+      "case_index": 2,
+      "input": "Are opened clearance items eligible for full return?",
+      "faithfulness": 0.0,
+      "answer_relevancy": 1.0,
+      "hallucination": 1.0,
+      "contextual_precision": 1.0,
+      "velith_score": 3.0,
+      "passed": false,
+      "unsupported_claims": [
+        "Opened clearance items are eligible for full return with immediate store credit (negation/polarity mismatch)"
+      ]
+    },
+    {
+      "case_index": 3,
+      "input": "What latency limit defines the JEV System-1 SLA and confidence escalation threshold?",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8123,
+      "hallucination": 0.0,
+      "contextual_precision": 1.0,
+      "velith_score": 9.4369,
+      "passed": true,
+      "unsupported_claims": []
+    },
+    {
+      "case_index": 4,
+      "input": "How do Datadog APM monitors track trace latency spikes?",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "hallucination": 1.0,
+      "contextual_precision": 1.0,
+      "velith_score": 0.0,
+      "passed": false,
+      "unsupported_claims": [
+        "Coffee beans are roasted at medium heat in small batches for aromatic flavor (low lexical grounding)"
+      ]
+    },
+    {
+      "case_index": 5,
+      "input": "How are Arize Phoenix spans correlated with Datadog structured logs?",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9041,
+      "hallucination": 0.0,
+      "contextual_precision": 1.0,
+      "velith_score": 9.7123,
+      "passed": true,
+      "unsupported_claims": []
+    }
+  ]
+}

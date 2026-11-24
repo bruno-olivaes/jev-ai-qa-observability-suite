@@ -1,0 +1,41 @@
+{
+  "name": "JEV AI QA Service Structured Log Pipeline",
+  "is_enabled": true,
+  "filter": {
+    "query": "service:jev-ai-qa-service"
+  },
+  "processors": [
+    {
+      "type": "date-remapper",
+      "name": "Remap UTC timestamp",
+      "sources": ["timestamp"]
+    },
+    {
+      "type": "status-remapper",
+      "name": "Remap log status",
+      "sources": ["status"]
+    },
+    {
+      "type": "trace-id-remapper",
+      "name": "Correlate APM Trace ID",
+      "sources": ["dd.trace_id"]
+    },
+    {
+      "type": "attribute-remapper",
+      "name": "Extract latency_ms measure",
+      "sources": ["latency_ms"],
+      "target": "http.response_time_ms",
+      "target_type": "attribute",
+      "preserve_source": true
+    },
+    {
+      "type": "category-processor",
+      "name": "Bucket JEV Confidence Bands",
+      "target": "jev.confidence_band",
+      "categories": [
+        { "name": "low_confidence_escalate", "filter": { "query": "@jev.confidence:<0.72" } },
+        { "name": "high_confidence", "filter": { "query": "@jev.confidence:>=0.72" } }
+      ]
+    }
+  ]
+}

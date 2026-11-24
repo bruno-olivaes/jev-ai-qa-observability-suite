@@ -1,0 +1,75 @@
+[
+  {
+    "id": "case_01_grounded_refund",
+    "category": "golden",
+    "input": "What is the refund deadline and maximum SLA hours for order cancellation?",
+    "expected_output": "Customers may request a refund within 30 days of delivery, processed inside 72 hours.",
+    "actual_output": "Refund requests are accepted within 30 days of delivery and processed in up to 72 hours.",
+    "retrieval_context": [
+      "Refund requests are accepted within 30 days after product delivery.",
+      "Approved refund transactions are processed within 72 business hours.",
+      "Promotional gift vouchers are issued separately in partner campaigns."
+    ],
+    "expect_pass": true
+  },
+  {
+    "id": "case_02_numeric_hallucination",
+    "category": "adversarial_hallucination",
+    "input": "What is the refund deadline and processing fee?",
+    "expected_output": "Refunds within 30 days carry zero processing fee.",
+    "actual_output": "Refund requests have a 90 days window and charge a 25.5 percent processing fee.",
+    "retrieval_context": [
+      "Refund requests are accepted within 30 days after product delivery with zero processing fee.",
+      "Support operates Monday through Friday from 09:00 to 18:00."
+    ],
+    "expect_pass": false
+  },
+  {
+    "id": "case_03_polarity_contradiction",
+    "category": "adversarial_contradiction",
+    "input": "Are opened clearance items eligible for full return?",
+    "expected_output": "Opened clearance items are not eligible for return.",
+    "actual_output": "Opened clearance items are eligible for full return with immediate store credit.",
+    "retrieval_context": [
+      "Opened clearance items are not eligible for full return under any condition.",
+      "Unopened regular catalog items qualify for 30 days exchange."
+    ],
+    "expect_pass": false
+  },
+  {
+    "id": "case_04_jev_sla_grounded",
+    "category": "golden",
+    "input": "What latency limit defines the JEV System-1 SLA and confidence escalation threshold?",
+    "expected_output": "JEV System-1 enforces P95 latency below 500 ms and escalates confidence below 0.72.",
+    "actual_output": "The JEV System-1 SLA enforces P95 latency under 500 ms and routes confidence below 0.72 to human review.",
+    "retrieval_context": [
+      "JEV System-1 enforces strict typed schemas with P95 latency under 500 ms.",
+      "Predictions with confidence below 0.72 are escalated to human review automatically.",
+      "Unrelated billing archive logs are rotated every 14 days."
+    ],
+    "expect_pass": true
+  },
+  {
+    "id": "case_05_off_topic_irrelevant",
+    "category": "adversarial_irrelevancy",
+    "input": "How do Datadog APM monitors track trace latency spikes?",
+    "expected_output": "Datadog monitors track P95 trace latency quantiles over 5 minute windows.",
+    "actual_output": "Coffee beans are roasted at medium heat in small batches for aromatic flavor.",
+    "retrieval_context": [
+      "Datadog APM monitors query trace duration quantiles over 5 minute sliding windows."
+    ],
+    "expect_pass": false
+  },
+  {
+    "id": "case_06_multi_hop_grounded",
+    "category": "golden",
+    "input": "How are Arize Phoenix spans correlated with Datadog structured logs?",
+    "expected_output": "OpenTelemetry trace_id and span_id attributes link Phoenix OpenInference spans with Datadog JSON logs.",
+    "actual_output": "OpenTelemetry trace_id and span_id link Arize Phoenix OpenInference spans directly to Datadog structured JSON logs.",
+    "retrieval_context": [
+      "Every pipeline span carries OpenInference attributes compatible with Arize Phoenix.",
+      "Datadog structured logs record dd.trace_id and dd.span_id from the active OpenTelemetry span context."
+    ],
+    "expect_pass": true
+  }
+]
